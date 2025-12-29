@@ -1,0 +1,113 @@
+{
+  "generated_at": "2025-12-29T15:23:50.717489",
+  "total_tests": 259,
+  "test_files": 16,
+  "file_counts": {
+    "test_all_exercises.py": 37,
+    "test_analytics.py": 10,
+    "test_auth.py": 13,
+    "test_code_runner.py": 28,
+    "test_config.py": 7,
+    "test_curriculum.py": 19,
+    "test_edge_cases.py": 27,
+    "test_exercise_validation.py": 12,
+    "test_gemini_service.py": 9,
+    "test_hint_generator.py": 15,
+    "test_human_perspective.py": 32,
+    "test_models.py": 8,
+    "test_prompts.py": 10,
+    "test_security.py": 17,
+    "test_student_experience.py": 2,
+    "test_task_decomposer.py": 13
+  },
+  "category_counts": {
+    "Curriculum": {
+      "count": 68,
+      "files": [
+        "test_curriculum.py",
+        "test_all_exercises.py",
+        "test_exercise_validation.py"
+      ],
+      "file_counts": {
+        "test_curriculum.py": 19,
+        "test_all_exercises.py": 37,
+        "test_exercise_validation.py": 12
+      }
+    },
+    "AI/LLM Integration": {
+      "count": 47,
+      "files": [
+        "test_gemini_service.py",
+        "test_hint_generator.py",
+        "test_task_decomposer.py",
+        "test_prompts.py"
+      ],
+      "file_counts": {
+        "test_gemini_service.py": 9,
+        "test_hint_generator.py": 15,
+        "test_task_decomposer.py": 13,
+        "test_prompts.py": 10
+      }
+    },
+    "ADHD Features": {
+      "count": 34,
+      "files": [
+        "test_human_perspective.py",
+        "test_student_experience.py"
+      ],
+      "file_counts": {
+        "test_human_perspective.py": 32,
+        "test_student_experience.py": 2
+      }
+    },
+    "Edge Cases": {
+      "count": 34,
+      "files": [
+        "test_edge_cases.py",
+        "test_config.py"
+      ],
+      "file_counts": {
+        "test_edge_cases.py": 27,
+        "test_config.py": 7
+      }
+    },
+    "Security/COPPA": {
+      "count": 30,
+      "files": [
+        "test_security.py",
+        "test_auth.py"
+      ],
+      "file_counts": {
+        "test_security.py": 17,
+        "test_auth.py": 13
+      }
+    },
+    "Code Execution": {
+      "count": 28,
+      "files": [
+        "test_code_runner.py"
+      ],
+      "file_counts": {
+        "test_code_runner.py": 28
+      }
+    },
+    "Analytics": {
+      "count": 18,
+      "files": [
+        "test_analytics.py",
+        "test_models.py"
+      ],
+      "file_counts": {
+        "test_analytics.py": 10,
+        "test_models.py": 8
+      }
+    }
+  },
+  "test_results": {
+    "passed": 258,
+    "failed": 0,
+    "skipped": 1,
+    "total": 259,
+    "pass_rate": 99.6
+  }
+}
