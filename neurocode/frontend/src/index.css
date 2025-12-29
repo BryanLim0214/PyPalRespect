@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* ADHD-Focused Design System */
+
+/* Custom fonts */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/woff/OpenDyslexic-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* CSS Custom Properties for theming */
+:root {
+  /* Colors - Calm, focused palette */
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+
+  /* Backgrounds */
+  --color-bg: #fafafa;
+  --color-bg-secondary: #f3f4f6;
+  --color-bg-card: #ffffff;
+
+  /* Text */
+  --color-text: #1f2937;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #9ca3af;
+
+  /* Borders */
+  --color-border: #d1d5db;
+  --color-border-focus: #2563eb;
+
+  /* Code editor */
+  --color-editor-bg: #1e1e1e;
+  --color-editor-text: #d4d4d4;
+
+  /* Timing - reduced motion friendly */
+  --transition-fast: 150ms;
+  --transition-normal: 200ms;
+}
+
+/* Dark mode - improved contrast for WCAG AA */
+.dark {
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-success: #22c55e;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+
+  --color-bg: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-bg-card: #1e293b;
+  --color-text: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-border: #475569;
+}
+
+/* High contrast mode - strong visibility */
+.high-contrast {
+  --color-text: #000000;
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f5f5f5;
+  --color-bg-card: #ffffff;
+  --color-border: #000000;
+  --color-primary: #0000cc;
+  --color-success: #006600;
+  --color-warning: #cc6600;
+  --color-error: #cc0000;
+}
+
+.dark.high-contrast {
+  --color-text: #ffffff;
+  --color-bg: #000000;
+  --color-bg-secondary: #1a1a1a;
+  --color-bg-card: #0a0a0a;
+  --color-border: #ffffff;
+  --color-primary: #66a3ff;
+  --color-success: #66ff66;
+  --color-warning: #ffcc66;
+  --color-error: #ff6666;
+}
+
+/* Dyslexic font mode */
+.dyslexic-font {
+  font-family: 'OpenDyslexic', sans-serif !important;
+}
+
+.dyslexic-font * {
+  font-family: 'OpenDyslexic', sans-serif !important;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Button base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-border);
+}
+
+/* Card component */
+.card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+/* Input styles */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background-color: var(--color-bg-card);
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: border-color var(--transition-fast);
+}
+
+.input:focus {
+  border-color: var(--color-border-focus);
+}
+
+/* Progress indicators */
+.progress-bar {
+  height: 0.5rem;
+  background-color: var(--color-bg-secondary);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--color-primary);
+  transition: width var(--transition-normal);
+}
+
+/* Step indicators */
+.step-complete {
+  color: var(--color-success);
+}
+
+.step-current {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.step-pending {
+  color: var(--color-text-muted);
+}
