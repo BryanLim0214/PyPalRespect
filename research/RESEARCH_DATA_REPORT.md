@@ -183,20 +183,41 @@ Based on 16 simulated sessions with 5 sample students:
 
 ---
 
-## 7. Screenshots
+## 7. Visual Assets for Research Paper
 
-Located in `research/screenshots/`:
+### 7.1 Professional Diagrams (research/diagrams/)
 
-1. **01_api_docs_overview.png** - Full API documentation (Swagger UI)
-2. **02_tutor_endpoints.png** - AI tutoring endpoints (hints, task decomposition)
-3. **03_exercise_endpoints.png** - Curriculum management endpoints
-4. **04_health_check_endpoint.png** - System health and admin endpoints
+| File | Description |
+|------|-------------|
+| `01_hint_escalation_system.png` | 4-level hint system infographic showing adaptive help progression |
+| `02_micro_task_decomposition.png` | Visual showing how complex problems are broken into 3-5 min steps |
+| `03_system_architecture.png` | Complete 3-tier architecture (Frontend, Backend, AI/Data) |
+| `04_coppa_consent_flow.png` | Flowchart of parental consent verification process |
 
-## 8. Video Demo
+### 7.2 UI Screenshots (research/ui_screenshots/)
 
-Located in `research/videos/`:
+| File | Description | ADHD-Friendly Features |
+|------|-------------|------------------------|
+| `01_login_page.png` | Clean login interface | Minimal distractions, centered focus |
+| `02_registration_interests.png` | Interest selection with icons | Gamified engagement, visual categories |
+| `03_registration_form.png` | Student registration form | Simple fields, age-appropriate language |
+| `04_interests_selected.png` | Interactive interest buttons | Clear visual feedback, engaging design |
 
-- **api_documentation_demo.webp** - Walkthrough of the API documentation
+### 7.3 API Documentation (research/screenshots/)
+
+| File | Description |
+|------|-------------|
+| `01_api_docs_overview.png` | Swagger UI full API documentation |
+| `02_tutor_endpoints.png` | AI tutoring endpoints (hint, decompose, message) |
+| `03_exercise_endpoints.png` | Curriculum management endpoints |
+| `04_health_check_endpoint.png` | System health and admin endpoints |
+
+### 7.4 Video Demos (research/videos/)
+
+| File | Description |
+|------|-------------|
+| `api_documentation_demo.webp` | Walkthrough of API documentation |
+| `frontend_ui_demo.webp` | Complete UI interaction demo showing registration flow |
 
 ---
 
