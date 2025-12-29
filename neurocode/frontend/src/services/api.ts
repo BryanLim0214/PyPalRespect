@@ -33,6 +33,7 @@ async function request<T>(
     endpoint: string,
     options: RequestInit = {}
 ): Promise<T> {
+    console.log(`[PyPal API] ${options.method || 'GET'} ${endpoint}`);
     const token = localStorage.getItem('access_token');
 
     const headers: Record<string, string> = {

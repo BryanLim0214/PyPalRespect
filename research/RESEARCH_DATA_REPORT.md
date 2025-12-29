@@ -1,7 +1,7 @@
-# NeuroCode Research Data Report
+# PyPal Research Data Report
 ## RESPECT 2026 Conference - Evidence for ADHD-Focused LLM Tutoring
 
-**Project:** NeuroCode - ADHD-Focused Python Tutor for Middle Schoolers  
+**Project:** PyPal - ADHD-Focused Python Tutor for Middle Schoolers  
 **Repository:** [github.com/BryanLim0214/ADHDLLMS](https://github.com/BryanLim0214/ADHDLLMS)  
 **Date Generated:** December 29, 2025
 
@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-NeuroCode is a fully functional ADHD-focused Python programming tutor that combines:
+PyPal is a fully functional ADHD-focused Python programming tutor that combines:
 - **LLM-powered adaptive tutoring** (Google Gemini API)
 - **ADHD-specific accommodations** (micro-task decomposition, 4-level hints, break reminders)
 - **COPPA-compliant design** (parental consent for users under 13)

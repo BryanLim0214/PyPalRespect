@@ -24,11 +24,14 @@ export function LoginPage() {
     return (
         <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center p-4">
             <div className="w-full max-w-md">
-                <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-[var(--color-primary)]">NeuroCode</h1>
-                    <p className="text-[var(--color-text-secondary)] mt-2">
-                        Learn Python at your own pace
-                    </p>
+                <div className="space-y-6">
+                    <div className="text-center">
+                        <h1 className="text-4xl font-extrabold text-blue-600 mb-2">PyPal</h1>
+                        <h2 className="text-2xl font-bold text-gray-900">Welcome Back!</h2>
+                        <p className="mt-2 text-sm text-gray-600">
+                            Ready to continue your Python adventure?
+                        </p>
+                    </div>
                 </div>
 
                 <div className="card">

@@ -1,4 +1,4 @@
-# NeuroCode: ADHD-Focused Python Tutor for Middle Schoolers
+# PyPal: ADHD-Focused Python Tutor for Middle Schoolers
 ## Complete Implementation Guide for Cursor/Windsurf IDE
 
 **Target Audience:** Middle school students (grades 6-8, ages 11-14) with ADHD  
@@ -29,7 +29,7 @@
 
 ### 1.1 What We're Building
 
-NeuroCode is an LLM-powered adaptive Python programming tutor specifically designed for middle school students (ages 11-14) with ADHD. It addresses the gap identified in research: **no existing tool combines AI tutoring + programming education + ADHD-specific accommodations**.
+PyPal is an LLM-powered adaptive Python programming tutor specifically designed for middle school students (ages 11-14) with ADHD. It addresses the gap identified in research: **no existing tool combines AI tutoring + programming education + ADHD-specific accommodations**.
 
 ### 1.2 Core Features
 
@@ -251,7 +251,7 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
     
     # App
-    APP_NAME: str = "NeuroCode"
+    APP_NAME: str = "PyPal"
     DEBUG: bool = False
     SECRET_KEY: str
     
@@ -432,7 +432,7 @@ class ParentalConsent(Base):
 
 ```python
 """
-NeuroCode FastAPI Application Entry Point.
+PyPal FastAPI Application Entry Point.
 """
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
@@ -457,7 +457,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="NeuroCode API",
+    title="PyPal API",
     description="ADHD-focused Python programming tutor for middle schoolers",
     version="0.1.0",
     lifespan=lifespan,

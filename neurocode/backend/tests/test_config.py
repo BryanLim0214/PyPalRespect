@@ -20,7 +20,8 @@ class TestConfig:
             _env_file=None,  # Prevent loading .env to test defaults
         )
         
-        assert settings.APP_NAME == "NeuroCode"
+        assert settings.PROJECT_NAME == "PyPal"
+        assert settings.API_V1_STR == "/api/v1"
         assert settings.DEBUG == False
         assert settings.MIN_AGE_WITHOUT_CONSENT == 13
         assert settings.SESSION_TIMEOUT_MINUTES == 45

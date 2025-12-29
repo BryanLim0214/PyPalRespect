@@ -23,7 +23,7 @@ export function MainLayout() {
                     <div className="flex items-center justify-between h-16">
                         {/* Logo */}
                         <Link to="/dashboard" className="flex items-center gap-2">
-                            <span className="text-xl font-bold text-[var(--color-primary)]">NeuroCode</span>
+                            <span className="text-xl font-bold text-[var(--color-primary)]">PyPal</span>
                         </Link>
 
                         {/* Center nav */}

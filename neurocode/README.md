@@ -1,6 +1,12 @@
-# NeuroCode - ADHD-Focused Python Tutor
+# PyPal: ADHD-Focused Python Tutor
 
-An adaptive Python programming tutor designed for middle schoolers (grades 6-8) with ADHD. Built using FastAPI and Google's Gemini API.
+**PyPal** is an adaptive, AI-powered learning platform specifically designed to teach Python programming to **middle school students (ages 11-14) with ADHD**.
+
+Built for the **RESPECT 2026 Conference**, PyPal leverages Generative AI (Google Gemini) to provide:
+- **Micro-Task Decomposition:** Breaking complex problems into manageable 3-5 minute steps.
+- **Adaptive Hint Escalation:** A 4-level hint system that prevents frustration without giving away answers immediately.
+- **Emotion-Aware Feedback:** Encouraging and empathetic responses that recognize effort and persistence.
+- **Gamified Progress:** Visual tracking, "dopamine-friendly" rewards, and clear milestones.
 
 ## 🚀 Quick Start
 

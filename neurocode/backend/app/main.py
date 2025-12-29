@@ -23,21 +23,18 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="NeuroCode API",
-    description="ADHD-focused Python programming tutor for middle schoolers",
-    version="0.1.0",
-    lifespan=lifespan,
+    title="PyPal API",
+    description="Backend API for PyPal - ADHD-friendly Python Tutor",
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json"
 )
 
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",  # Vite dev server
-        "http://localhost:3000",
-        "http://127.0.0.1:5173",
-        "http://127.0.0.1:3000",
-    ],
+    allow_origins=["http://localhost:5173", "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

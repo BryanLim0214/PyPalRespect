@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test Coverage Analysis Script for NeuroCode Research
+Test Coverage Analysis Script for PyPal Research
 
 This script collects and categorizes all pytest tests to generate
 statistics for research documentation and the SVG coverage chart.
@@ -124,7 +124,7 @@ def run_tests_with_coverage():
 def generate_report():
     """Generate complete test coverage report."""
     print("=" * 60)
-    print("NeuroCode Test Coverage Analysis")
+    print("PyPal Test Coverage Analysis")
     print("=" * 60)
     print()
     

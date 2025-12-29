@@ -7,6 +7,8 @@ from typing import Optional
 
 
 class Settings(BaseSettings):
+    PROJECT_NAME: str = "PyPal"
+    API_V1_STR: str = "/api/v1"
     """Application settings loaded from environment variables."""
     
     # App

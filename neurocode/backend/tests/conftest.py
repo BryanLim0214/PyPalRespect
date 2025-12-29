@@ -1,5 +1,5 @@
 """
-Pytest configuration and fixtures for NeuroCode backend tests.
+Pytest configuration and fixtures for PyPal backend tests.
 """
 import pytest
 import asyncio
@@ -12,7 +12,7 @@ from app.database import Base, get_db
 from app.config import get_settings
 
 # Test database
-TEST_DATABASE_URL = "sqlite+aiosqlite:///./test_neurocode.db"
+TEST_DATABASE_URL = "sqlite+aiosqlite:///./test_pypal.db"
 
 
 @pytest.fixture(scope="session")
