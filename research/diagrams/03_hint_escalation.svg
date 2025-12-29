@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="550" fill="url(#bgGrad3)"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="22" font-weight="bold">4-Level Hint Escalation System</text>
+  <text x="400" y="55" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">From app/services/hint_generator.py | 15 tests in test_hint_generator.py</text>
+  
+  <!-- Level 1: Conceptual -->
+  <rect x="100" y="90" width="600" height="90" rx="10" fill="#166534" stroke="#22c55e" stroke-width="2"/>
+  <text x="130" y="120" fill="#22c55e" font-family="Arial, sans-serif" font-size="16" font-weight="bold">LEVEL 1: Conceptual Nudge</text>
+  <text x="130" y="145" fill="#fff" font-family="Arial, sans-serif" font-size="13">"Think about what tool helps you repeat things in Python..."</text>
+  <text x="130" y="165" fill="#86efac" font-family="Arial, sans-serif" font-size="11">→ No code shown, encourages independent thinking</text>
+  
+  <!-- Arrow -->
+  <path d="M 400 180 L 400 200" stroke="#64748b" stroke-width="3"/>
+  <polygon points="400,210 395,200 405,200" fill="#64748b"/>
+  
+  <!-- Level 2: Directional -->
+  <rect x="100" y="215" width="600" height="90" rx="10" fill="#854d0e" stroke="#eab308" stroke-width="2"/>
+  <text x="130" y="245" fill="#eab308" font-family="Arial, sans-serif" font-size="16" font-weight="bold">LEVEL 2: Directional Guidance</text>
+  <text x="130" y="270" fill="#fff" font-family="Arial, sans-serif" font-size="13">"You need a for loop that counts from 1 to 5"</text>
+  <text x="130" y="290" fill="#fef08a" font-family="Arial, sans-serif" font-size="11">→ Specific approach without actual code</text>
+  
+  <!-- Arrow -->
+  <path d="M 400 305 L 400 325" stroke="#64748b" stroke-width="3"/>
+  <polygon points="400,335 395,325 405,325" fill="#64748b"/>
+  
+  <!-- Level 3: Partial Code -->
+  <rect x="100" y="340" width="600" height="90" rx="10" fill="#9a3412" stroke="#f97316" stroke-width="2"/>
+  <text x="130" y="370" fill="#f97316" font-family="Arial, sans-serif" font-size="16" font-weight="bold">LEVEL 3: Partial Code</text>
+  <text x="130" y="395" fill="#fff" font-family="monospace" font-size="13">for i in range(___):  # What goes in the blank?</text>
+  <text x="130" y="415" fill="#fed7aa" font-family="Arial, sans-serif" font-size="11">→ Code scaffold with gaps to fill</text>
+  
+  <!-- Arrow -->
+  <path d="M 400 430 L 400 450" stroke="#64748b" stroke-width="3"/>
+  <polygon points="400,460 395,450 405,450" fill="#64748b"/>
+  
+  <!-- Level 4: Full Solution -->
+  <rect x="100" y="465" width="600" height="70" rx="10" fill="#7f1d1d" stroke="#ef4444" stroke-width="2"/>
+  <text x="130" y="495" fill="#ef4444" font-family="Arial, sans-serif" font-size="16" font-weight="bold">LEVEL 4: Full Solution</text>
+  <text x="130" y="520" fill="#fff" font-family="monospace" font-size="13">for i in range(1, 6): print(i)</text>
+  
+  <!-- Side annotation -->
+  <rect x="720" y="200" width="70" height="180" rx="5" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
+  <text x="755" y="230" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="10" transform="rotate(90, 755, 290)">Frustration Detection Auto-Escalates</text>
+</svg>
