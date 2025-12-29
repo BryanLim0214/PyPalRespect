@@ -1,90 +1,105 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
-  <defs>
-    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
-    </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
-    </filter>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480">
+  <!-- ACM-Style System Architecture: Clean, white background, icons, minimal text -->
   
   <!-- Background -->
-  <rect width="900" height="600" fill="url(#bgGrad2)"/>
+  <rect width="700" height="480" fill="#ffffff"/>
   
   <!-- Title -->
-  <text x="450" y="35" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="22" font-weight="bold">NeuroCode System Architecture</text>
-  <text x="450" y="55" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">3-Tier Architecture for ADHD-Focused Python Tutoring</text>
+  <text x="350" y="28" text-anchor="middle" fill="#1a1a1a" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold">System Architecture</text>
   
   <!-- TIER 1: Frontend -->
-  <rect x="50" y="80" width="800" height="130" rx="10" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)"/>
-  <text x="70" y="105" fill="#3b82f6" font-family="Arial, sans-serif" font-size="14" font-weight="bold">FRONTEND (React 19 + TypeScript)</text>
+  <rect x="40" y="50" width="620" height="110" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="60" y="72" fill="#1e40af" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold">PRESENTATION LAYER</text>
   
-  <!-- Frontend boxes -->
-  <rect x="70" y="120" width="170" height="70" rx="8" fill="#2563eb"/>
-  <text x="155" y="150" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">ADHD-Friendly UI</text>
-  <text x="155" y="170" text-anchor="middle" fill="#bfdbfe" font-family="Arial, sans-serif" font-size="10">Reduced animations</text>
+  <!-- Frontend boxes with icons -->
+  <g transform="translate(60,82)">
+    <rect width="130" height="60" rx="6" fill="#3b82f6"/>
+    <text x="65" y="25" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="24">🖥️</text>
+    <text x="65" y="48" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="10">React UI</text>
+  </g>
   
-  <rect x="260" y="120" width="170" height="70" rx="8" fill="#2563eb"/>
-  <text x="345" y="150" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Code Editor</text>
-  <text x="345" y="170" text-anchor="middle" fill="#bfdbfe" font-family="Arial, sans-serif" font-size="10">CodeMirror 6</text>
+  <g transform="translate(210,82)">
+    <rect width="130" height="60" rx="6" fill="#3b82f6"/>
+    <text x="65" y="25" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="24">📝</text>
+    <text x="65" y="48" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="10">Code Editor</text>
+  </g>
   
-  <rect x="450" y="120" width="170" height="70" rx="8" fill="#2563eb"/>
-  <text x="535" y="150" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Break Timer</text>
-  <text x="535" y="170" text-anchor="middle" fill="#bfdbfe" font-family="Arial, sans-serif" font-size="10">20-min reminders</text>
+  <g transform="translate(360,82)">
+    <rect width="130" height="60" rx="6" fill="#3b82f6"/>
+    <text x="65" y="25" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="24">⏱️</text>
+    <text x="65" y="48" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="10">Break Timer</text>
+  </g>
   
-  <rect x="640" y="120" width="170" height="70" rx="8" fill="#2563eb"/>
-  <text x="725" y="150" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Progress Tracker</text>
-  <text x="725" y="170" text-anchor="middle" fill="#bfdbfe" font-family="Arial, sans-serif" font-size="10">Gamification</text>
+  <g transform="translate(510,82)">
+    <rect width="130" height="60" rx="6" fill="#3b82f6"/>
+    <text x="65" y="25" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="24">📊</text>
+    <text x="65" y="48" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="10">Progress</text>
+  </g>
   
-  <!-- Arrows down -->
-  <path d="M 450 210 L 450 235" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
-  
+  <!-- Arrow -->
+  <path d="M 350 160 L 350 175" stroke="#64748b" stroke-width="2" fill="none"/>
+  <polygon points="350,180 345,172 355,172" fill="#64748b"/>
+
   <!-- TIER 2: Backend -->
-  <rect x="50" y="240" width="800" height="130" rx="10" fill="#1e3a3a" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
-  <text x="70" y="265" fill="#10b981" font-family="Arial, sans-serif" font-size="14" font-weight="bold">BACKEND (FastAPI + Python 3.11)</text>
+  <rect x="40" y="185" width="620" height="110" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="60" y="207" fill="#166534" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold">APPLICATION LAYER (FastAPI)</text>
   
-  <!-- Backend boxes -->
-  <rect x="70" y="280" width="170" height="70" rx="8" fill="#059669"/>
-  <text x="155" y="310" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Auth Service</text>
-  <text x="155" y="330" text-anchor="middle" fill="#a7f3d0" font-family="Arial, sans-serif" font-size="10">COPPA Compliant</text>
+  <g transform="translate(60,217)">
+    <rect width="130" height="60" rx="6" fill="#22c55e"/>
+    <text x="65" y="25" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="24">🔐</text>
+    <text x="65" y="48" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="10">Auth (COPPA)</text>
+  </g>
   
-  <rect x="260" y="280" width="170" height="70" rx="8" fill="#059669"/>
-  <text x="345" y="310" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Tutor Service</text>
-  <text x="345" y="330" text-anchor="middle" fill="#a7f3d0" font-family="Arial, sans-serif" font-size="10">LLM Integration</text>
+  <g transform="translate(210,217)">
+    <rect width="130" height="60" rx="6" fill="#22c55e"/>
+    <text x="65" y="25" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="24">🎓</text>
+    <text x="65" y="48" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="10">Tutor Service</text>
+  </g>
   
-  <rect x="450" y="280" width="170" height="70" rx="8" fill="#059669"/>
-  <text x="535" y="310" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Exercise Manager</text>
-  <text x="535" y="330" text-anchor="middle" fill="#a7f3d0" font-family="Arial, sans-serif" font-size="10">15 Lessons</text>
+  <g transform="translate(360,217)">
+    <rect width="130" height="60" rx="6" fill="#22c55e"/>
+    <text x="65" y="25" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="24">📚</text>
+    <text x="65" y="48" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="10">Exercises</text>
+  </g>
   
-  <rect x="640" y="280" width="170" height="70" rx="8" fill="#059669"/>
-  <text x="725" y="310" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Analytics Engine</text>
-  <text x="725" y="330" text-anchor="middle" fill="#a7f3d0" font-family="Arial, sans-serif" font-size="10">Research Metrics</text>
+  <g transform="translate(510,217)">
+    <rect width="130" height="60" rx="6" fill="#22c55e"/>
+    <text x="65" y="25" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="24">📈</text>
+    <text x="65" y="48" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="10">Analytics</text>
+  </g>
   
-  <!-- Arrows down -->
-  <path d="M 450 370 L 450 395" stroke="#64748b" stroke-width="2"/>
+  <!-- Arrow -->
+  <path d="M 350 295 L 350 310" stroke="#64748b" stroke-width="2" fill="none"/>
+  <polygon points="350,315 345,307 355,307" fill="#64748b"/>
+
+  <!-- TIER 3: AI + Data -->
+  <rect x="40" y="320" width="620" height="110" rx="8" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
+  <text x="60" y="342" fill="#7e22ce" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold">AI + DATA LAYER</text>
   
-  <!-- TIER 3: AI and Data -->
-  <rect x="50" y="400" width="800" height="130" rx="10" fill="#3b1e3f" stroke="#a855f7" stroke-width="2" filter="url(#shadow)"/>
-  <text x="70" y="425" fill="#a855f7" font-family="Arial, sans-serif" font-size="14" font-weight="bold">AI + DATA LAYER</text>
+  <g transform="translate(60,352)">
+    <rect width="130" height="60" rx="6" fill="#a855f7"/>
+    <text x="65" y="25" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="24">🤖</text>
+    <text x="65" y="48" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="10">Gemini API</text>
+  </g>
   
-  <!-- AI boxes -->
-  <rect x="70" y="440" width="170" height="70" rx="8" fill="#7c3aed"/>
-  <text x="155" y="470" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Google Gemini</text>
-  <text x="155" y="490" text-anchor="middle" fill="#ddd6fe" font-family="Arial, sans-serif" font-size="10">gemini-2.0-flash</text>
+  <g transform="translate(210,352)">
+    <rect width="130" height="60" rx="6" fill="#a855f7"/>
+    <text x="65" y="25" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="24">💡</text>
+    <text x="65" y="48" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="10">Hint Generator</text>
+  </g>
   
-  <rect x="260" y="440" width="170" height="70" rx="8" fill="#7c3aed"/>
-  <text x="345" y="470" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Hint Generator</text>
-  <text x="345" y="490" text-anchor="middle" fill="#ddd6fe" font-family="Arial, sans-serif" font-size="10">4-Level Escalation</text>
+  <g transform="translate(360,352)">
+    <rect width="130" height="60" rx="6" fill="#a855f7"/>
+    <text x="65" y="25" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="24">🧩</text>
+    <text x="65" y="48" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="10">Task Decomposer</text>
+  </g>
   
-  <rect x="450" y="440" width="170" height="70" rx="8" fill="#7c3aed"/>
-  <text x="535" y="470" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Task Decomposer</text>
-  <text x="535" y="490" text-anchor="middle" fill="#ddd6fe" font-family="Arial, sans-serif" font-size="10">3-5 Micro-steps</text>
-  
-  <rect x="640" y="440" width="170" height="70" rx="8" fill="#7c3aed"/>
-  <text x="725" y="470" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">SQLite/PostgreSQL</text>
-  <text x="725" y="490" text-anchor="middle" fill="#ddd6fe" font-family="Arial, sans-serif" font-size="10">SQLAlchemy 2.0</text>
+  <g transform="translate(510,352)">
+    <rect width="130" height="60" rx="6" fill="#a855f7"/>
+    <text x="65" y="25" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="24">🗄️</text>
+    <text x="65" y="48" text-anchor="middle" fill="#fff" font-family="Helvetica, Arial, sans-serif" font-size="10">Database</text>
+  </g>
   
   <!-- Footer -->
-  <text x="450" y="570" text-anchor="middle" fill="#64748b" font-family="Arial, sans-serif" font-size="11">Based on actual project structure: neurocode/backend/app/</text>
+  <text x="350" y="460" text-anchor="middle" fill="#999" font-family="Helvetica, Arial, sans-serif" font-size="9">React 19 + TypeScript | FastAPI + Python 3.11 | Google Gemini + SQLAlchemy 2.0</text>
 </svg>
