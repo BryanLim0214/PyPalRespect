@@ -185,14 +185,18 @@ Based on 16 simulated sessions with 5 sample students:
 
 ## 7. Visual Assets for Research Paper
 
-### 7.1 Professional Diagrams (research/diagrams/)
+### 7.1 SVG Diagrams (research/diagrams/)
 
-| File | Description |
-|------|-------------|
-| `01_hint_escalation_system.png` | 4-level hint system infographic showing adaptive help progression |
-| `02_micro_task_decomposition.png` | Visual showing how complex problems are broken into 3-5 min steps |
-| `03_system_architecture.png` | Complete 3-tier architecture (Frontend, Backend, AI/Data) |
-| `04_coppa_consent_flow.png` | Flowchart of parental consent verification process |
+All diagrams are **vector SVG files** based on actual code and test data:
+
+| File | Description | Data Source |
+|------|-------------|-------------|
+| `01_test_coverage_chart.svg` | Bar chart of 259 tests by category | pytest --collect-only |
+| `02_system_architecture.svg` | 3-tier architecture (Frontend, Backend, AI) | app/ folder structure |
+| `03_hint_escalation.svg` | 4-level hint progression | hint_generator.py |
+| `04_coppa_consent_flow.svg` | Parental consent flowchart | auth.py |
+| `05_micro_task_decomposition.svg` | Complex→Simple task breakdown | task_decomposer.py |
+| `06_curriculum_overview.svg` | 15 lessons by difficulty level | curriculum.py |
 
 ### 7.2 UI Screenshots (research/ui_screenshots/)
 
