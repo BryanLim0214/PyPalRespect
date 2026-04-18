@@ -1,7 +1,12 @@
 /* User types */
+export type UserRole = 'student' | 'teacher';
+
 export interface User {
     id: number;
     username: string;
+    role: UserRole;
+    display_name?: string | null;
+    school?: string | null;
     grade_level: number;
     has_parental_consent: boolean;
     adhd_profile: string | null;
@@ -21,6 +26,62 @@ export interface RegisterRequest {
     grade_level: number;
     parent_email?: string;
     interests?: string[];
+    role?: UserRole;
+    display_name?: string;
+    school?: string;
+}
+
+/* Teacher types */
+export interface StudentSummary {
+    id: number;
+    username: string;
+    grade_level: number;
+    total_points: number;
+    current_streak: number;
+    has_parental_consent: boolean;
+    exercises_attempted: number;
+    exercises_completed: number;
+    hints_used: number;
+    last_active: string | null;
+    created_at: string;
+}
+
+export interface ClassroomOverview {
+    total_students: number;
+    active_last_7_days: number;
+    total_exercises: number;
+    total_completions: number;
+}
+
+export interface StudentDetail extends StudentSummary {
+    exercises: Array<{
+        exercise_id: number;
+        title: string;
+        concept: string | null;
+        completed: boolean;
+        current_step: number;
+        points_earned: number;
+        hints_used: number;
+        attempt_count: number;
+        last_updated: string;
+    }>;
+    recent_sessions: Array<{
+        id: number;
+        started_at: string;
+        ended_at: string | null;
+        completed: boolean;
+        hint_requests: number;
+        code_runs: number;
+        frustration_events: number;
+    }>;
+}
+
+export interface EngagementDay {
+    date: string;
+    sessions: number;
+    completed: number;
+    hints: number;
+    frustrations: number;
 }
 
 export interface LoginRequest {
@@ -46,6 +107,7 @@ export interface Exercise {
     step_count: number;
     interest_tags: string | null;
     steps: string | null;
+    test_cases?: string | null;
 }
 
 export interface ExerciseProgress {

@@ -1,5 +1,5 @@
 /**
- * API service layer for communicating with the NeuroCode backend.
+ * API service layer for communicating with the PyPal backend.
  */
 import type {
     User,
@@ -15,6 +15,10 @@ import type {
     TaskDecomposition,
     LearningSession,
     ProgressSummary,
+    ClassroomOverview,
+    StudentSummary,
+    StudentDetail,
+    EngagementDay,
 } from '../types';
 
 const API_BASE = '/api';
@@ -123,6 +127,11 @@ export const exerciseApi = {
         request<{ status: string }>(`/exercises/${exerciseId}/progress?step=${step}`, {
             method: 'PATCH',
         }),
+
+    resetProgress: (exerciseId: number) =>
+        request<{ status: string; message: string }>(`/exercises/${exerciseId}/progress`, {
+            method: 'DELETE',
+        }),
 };
 
 /* Tutor API */
@@ -178,6 +187,15 @@ export const progressApi = {
 export const adminApi = {
     seedExercises: () =>
         request<{ message: string }>('/admin/seed-exercises', { method: 'POST' }),
+};
+
+/* Teacher API */
+export const teacherApi = {
+    overview: () => request<ClassroomOverview>('/teacher/overview'),
+    listStudents: () => request<StudentSummary[]>('/teacher/students'),
+    getStudent: (id: number) => request<StudentDetail>(`/teacher/students/${id}`),
+    engagement: (days = 14) =>
+        request<{ days: number; trend: EngagementDay[] }>(`/teacher/engagement?days=${days}`),
 };
 
 export { ApiError };

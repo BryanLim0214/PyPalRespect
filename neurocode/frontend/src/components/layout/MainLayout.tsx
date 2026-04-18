@@ -1,52 +1,73 @@
 /**
- * MainLayout component with navigation.
+ * MainLayout with role-aware navigation for students and teachers.
  */
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuthStore, useThemeStore } from '../../stores';
 import { PointsDisplay } from '../adhd';
+import clsx from 'clsx';
 
 export function MainLayout() {
     const { user, logout } = useAuthStore();
     const { themeMode, setThemeMode } = useThemeStore();
     const navigate = useNavigate();
 
+    const isTeacher = user?.role === 'teacher';
+
     const handleLogout = () => {
         logout();
         navigate('/login');
     };
 
+    const studentLinks = [
+        { to: '/dashboard', label: 'Dashboard' },
+        { to: '/settings', label: 'Settings' },
+    ];
+    const teacherLinks = [
+        { to: '/teacher', label: 'Classroom' },
+        { to: '/teacher/exercises', label: 'Exercises' },
+        { to: '/settings', label: 'Settings' },
+    ];
+    const links = isTeacher ? teacherLinks : studentLinks;
+
     return (
         <div className="min-h-screen bg-[var(--color-bg)]">
-            {/* Navigation */}
             <nav className="bg-[var(--color-bg-card)] border-b border-[var(--color-border)] sticky top-0 z-40">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
-                        {/* Logo */}
-                        <Link to="/dashboard" className="flex items-center gap-2">
+                        <Link to={isTeacher ? '/teacher' : '/dashboard'} className="flex items-center gap-2">
                             <span className="text-xl font-bold text-[var(--color-primary)]">PyPal</span>
+                            {isTeacher && (
+                                <span className="px-2 py-0.5 text-xs rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold">
+                                    Teacher
+                                </span>
+                            )}
                         </Link>
 
-                        {/* Center nav */}
                         <div className="flex items-center gap-6">
-                            <Link
-                                to="/dashboard"
-                                className="text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text)]"
-                            >
-                                Dashboard
-                            </Link>
-                            <Link
-                                to="/settings"
-                                className="text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-text)]"
-                            >
-                                Settings
-                            </Link>
+                            {links.map((link) => (
+                                <NavLink
+                                    key={link.to}
+                                    to={link.to}
+                                    end
+                                    className={({ isActive }) =>
+                                        clsx(
+                                            'text-sm font-medium',
+                                            isActive
+                                                ? 'text-[var(--color-text)]'
+                                                : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text)]',
+                                        )
+                                    }
+                                >
+                                    {link.label}
+                                </NavLink>
+                            ))}
                         </div>
 
-                        {/* Right side */}
                         <div className="flex items-center gap-4">
-                            {user && <PointsDisplay points={user.total_points} streak={user.current_streak} />}
+                            {user && !isTeacher && (
+                                <PointsDisplay points={user.total_points} streak={user.current_streak} />
+                            )}
 
-                            {/* Theme toggle */}
                             <button
                                 onClick={() => setThemeMode(themeMode === 'light' ? 'dark' : 'light')}
                                 className="p-2 rounded-lg hover:bg-[var(--color-bg-secondary)]"
@@ -67,9 +88,10 @@ export function MainLayout() {
                                 )}
                             </button>
 
-                            {/* User menu */}
                             <div className="flex items-center gap-2">
-                                <span className="text-sm font-medium">{user?.username}</span>
+                                <span className="text-sm font-medium">
+                                    {user?.display_name || user?.username}
+                                </span>
                                 <button
                                     onClick={handleLogout}
                                     className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-error)]"
@@ -82,7 +104,6 @@ export function MainLayout() {
                 </div>
             </nav>
 
-            {/* Main content */}
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <Outlet />
             </main>

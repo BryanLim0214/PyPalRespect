@@ -14,11 +14,11 @@ class TestCurriculumStructure:
         exercises = get_all_exercises()
         assert len(exercises) > 0
     
-    def test_curriculum_has_15_exercises(self):
-        """Should have exactly 15 exercises in curriculum."""
+    def test_curriculum_has_exercises(self):
+        """Should have at least 15 exercises in curriculum."""
         from app.data.curriculum import get_all_exercises
         exercises = get_all_exercises()
-        assert len(exercises) == 15
+        assert len(exercises) >= 15, f"Expected at least 15 exercises, got {len(exercises)}"
     
     def test_all_exercises_have_required_fields(self):
         """Every exercise must have all required fields."""

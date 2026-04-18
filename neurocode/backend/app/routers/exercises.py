@@ -202,6 +202,37 @@ async def update_progress(
     return {"status": "updated", "current_step": step}
 
 
+@router.delete("/{exercise_id}/progress")
+async def reset_progress(
+    exercise_id: int,
+    current_user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Reset user's progress on an exercise (start fresh)."""
+    # Find existing progress
+    result = await db.execute(
+        select(ExerciseProgress).where(
+            ExerciseProgress.user_id == current_user.id,
+            ExerciseProgress.exercise_id == exercise_id,
+        )
+    )
+    progress = result.scalar_one_or_none()
+    
+    if progress:
+        # Reset the progress fields (keep the record for stats)
+        progress.current_step = 1
+        progress.last_code = None
+        progress.hints_used = 0
+        progress.completed = False
+        progress.completed_at = None
+        progress.first_started = datetime.now(timezone.utc)
+        progress.last_updated = datetime.now(timezone.utc)
+        await db.commit()
+        return {"status": "reset", "message": "Progress reset successfully"}
+    
+    return {"status": "no_progress", "message": "No progress to reset"}
+
+
 async def _get_or_create_progress(
     db: AsyncSession,
     user_id: int,

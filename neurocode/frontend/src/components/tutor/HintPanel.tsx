@@ -1,18 +1,19 @@
 /**
  * HintPanel component with 4-level hint escalation.
  */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { tutorApi } from '../../services/api';
-import type { HintResponse } from '../../types';
+import type { HintResponse, Step } from '../../types';
 import clsx from 'clsx';
 
 interface HintPanelProps {
     code: string;
     errorMessage?: string;
     onHintUsed?: () => void;
+    currentStep?: Step;
 }
 
-export function HintPanel({ code, errorMessage, onHintUsed }: HintPanelProps) {
+export function HintPanel({ code, errorMessage, onHintUsed, currentStep }: HintPanelProps) {
     const [currentHint, setCurrentHint] = useState<HintResponse | null>(null);
     const [hintLevel, setHintLevel] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +24,12 @@ export function HintPanel({ code, errorMessage, onHintUsed }: HintPanelProps) {
         { level: 3, label: 'Specific Help', description: 'Tells you exactly what to look at' },
         { level: 4, label: 'Full Solution', description: 'Shows the complete answer' },
     ];
+
+    // Reset hints when step changes
+    useEffect(() => {
+        setCurrentHint(null);
+        setHintLevel(1);
+    }, [currentStep?.number]);
 
     const handleGetHint = async () => {
         setIsLoading(true);
@@ -70,6 +77,21 @@ export function HintPanel({ code, errorMessage, onHintUsed }: HintPanelProps) {
                     </button>
                 )}
             </div>
+
+            {/* Step-specific code hint */}
+            {currentStep?.code_hint && (
+                <div className="bg-gray-800 dark:bg-gray-900 p-3 rounded-lg mb-4 border border-gray-700">
+                    <div className="flex items-center gap-2 mb-2">
+                        <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z" />
+                        </svg>
+                        <span className="text-xs font-medium text-yellow-400">Step {currentStep.number} Code Hint</span>
+                    </div>
+                    <code className="text-sm text-green-400 font-mono whitespace-pre-wrap">
+                        {currentStep.code_hint}
+                    </code>
+                </div>
+            )}
 
             {/* Hint level indicator */}
             <div className="flex gap-1 mb-4">

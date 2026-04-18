@@ -98,13 +98,28 @@ async def send_message(
         except:
             pass
             
-    # Generate response
+    # Generate response - include code context in the message if provided
     try:
         system_prompt = get_tutor_system_prompt(user_interests)
+        
+        # Build a message that includes the student's current code context
+        # so the tutor can give hints based on what they're working on
+        full_message = message.message
+        if message.current_code and message.current_code.strip():
+            full_message = f"""Student's question: {message.message}
+
+Here is the student's current code in the editor:
+```python
+{message.current_code}
+```
+
+Based on their code and question, give a helpful hint about what's going on or what to try next. Focus on THIS code only."""
+        
         response_text = await gemini_service.generate_response(
-            user_message=message.message,
+            user_message=full_message,
             system_prompt=system_prompt,
             conversation_history=conversation_history,
+            original_question=message.message,
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Tutor error: {str(e)}")

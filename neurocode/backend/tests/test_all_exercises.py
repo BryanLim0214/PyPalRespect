@@ -1,5 +1,5 @@
 """
-Comprehensive tests for ALL 15 exercises in the curriculum.
+Comprehensive tests for ALL exercises in the curriculum.
 
 Tests:
 1. All solution code compiles and runs
@@ -22,6 +22,8 @@ class TestAllExerciseSolutionsRun:
         """Every solution should run without runtime errors."""
         # For interactive exercises, provide mock input
         test_input = None
+        
+        # Exercises that require user input need mock data
         if "Number Guessing" in exercise["title"]:
             test_input = "5\n5\n5\n"  # Mock guesses
         elif "Choose Your Adventure" in exercise["title"]:
@@ -30,6 +32,16 @@ class TestAllExerciseSolutionsRun:
             test_input = "4\nblue"
         elif "Digital Journal" in exercise["title"]:
             test_input = "My test entry"
+        elif "Pet Age Calculator" in exercise["title"]:
+            test_input = "3"  # Dog age
+        elif "Emoji Mood Checker" in exercise["title"]:
+            test_input = "happy"  # Mood
+        elif "Word Counter" in exercise["title"]:
+            test_input = "Hello world test sentence"
+        elif "Rock Paper Scissors" in exercise["title"]:
+            test_input = "rock"
+        elif "Simple To-Do List" in exercise["title"]:
+            test_input = "Task 1\nTask 2\nTask 3\n"  # Three tasks
         
         result = run_python_code(exercise["solution_code"], test_input=test_input)
         assert result.success, f"{exercise['title']} failed: {result.error}"

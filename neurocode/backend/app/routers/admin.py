@@ -1,32 +1,27 @@
 """
 Admin/researcher API routes for analytics and management.
+Updated with seed-exercises update functionality.
 """
 from datetime import datetime, timedelta, timezone
 from typing import Optional
+import sqlalchemy
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
-import json
 
 from app.database import get_db
 from app.models.user import User
-from app.models.session import Exercise, LearningSession
+from app.models.session import Exercise, LearningSession, ExerciseProgress
 from app.services.analytics import AnalyticsService
-from app.routers.auth import get_current_user
+from app.routers.auth import require_teacher
 
 router = APIRouter()
-
-
-# Note: In production, add admin role checking
-async def require_admin(current_user: User = Depends(get_current_user)) -> User:
-    """Require admin access. Simplified for development."""
-    # In production, check for admin role
-    return current_user
 
 
 @router.get("/analytics")
 async def get_analytics(
     days: int = 30,
+    _teacher: User = Depends(require_teacher),
     db: AsyncSession = Depends(get_db),
 ):
     """Get aggregate analytics for research."""
@@ -42,6 +37,7 @@ async def get_analytics(
 @router.get("/analytics/engagement")
 async def get_engagement_metrics(
     days: int = 7,
+    _teacher: User = Depends(require_teacher),
     db: AsyncSession = Depends(get_db),
 ):
     """Get detailed engagement metrics."""
@@ -88,6 +84,7 @@ async def get_engagement_metrics(
 
 @router.get("/users/stats")
 async def get_user_stats(
+    _teacher: User = Depends(require_teacher),
     db: AsyncSession = Depends(get_db),
 ):
     """Get aggregate user statistics (anonymized)."""
@@ -118,11 +115,10 @@ async def get_user_stats(
 
 @router.get("/exercises/stats")
 async def get_exercise_stats(
+    _teacher: User = Depends(require_teacher),
     db: AsyncSession = Depends(get_db),
 ):
     """Get exercise completion statistics."""
-    from app.models.session import ExerciseProgress
-    
     result = await db.execute(
         select(
             ExerciseProgress.exercise_id,
@@ -150,13 +146,20 @@ async def get_exercise_stats(
 
 @router.post("/seed-exercises")
 async def seed_sample_exercises(
+    update_existing: bool = False,
     db: AsyncSession = Depends(get_db),
 ):
-    """Seed database with curriculum exercises."""
+    """
+    Seed database with curriculum exercises.
+    
+    Args:
+        update_existing: If True, update existing exercises with new data (steps, code_hints, etc.)
+    """
     from app.data.curriculum import get_all_exercises
     
     exercises = get_all_exercises()
-    count = 0
+    created = 0
+    updated = 0
     
     for ex_data in exercises:
         # Check if exercise already exists
@@ -165,15 +168,22 @@ async def seed_sample_exercises(
         )
         existing = result.scalar_one_or_none()
         
-        if not existing:
+        if existing:
+            if update_existing:
+                # Update existing exercise with new data
+                for key, value in ex_data.items():
+                    if key != "title":  # Don't update title
+                        setattr(existing, key, value)
+                updated += 1
+        else:
             exercise = Exercise(**ex_data)
             db.add(exercise)
-            count += 1
+            created += 1
     
     await db.commit()
     
-    return {"message": f"Seeded {count} new exercises (total curriculum: {len(exercises)})"}
-
-
-# Import needed for exercise stats
-import sqlalchemy
+    return {
+        "message": f"Seeded {created} new, updated {updated} existing exercises (total curriculum: {len(exercises)})",
+        "created": created,
+        "updated": updated
+    }

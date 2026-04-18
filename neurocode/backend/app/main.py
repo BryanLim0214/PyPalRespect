@@ -1,5 +1,5 @@
 """
-NeuroCode FastAPI Application Entry Point.
+PyPal FastAPI Application Entry Point.
 """
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import get_settings
 from app.database import init_db
-from app.routers import auth, tutor, exercises, progress, admin
+from app.routers import auth, tutor, exercises, progress, admin, teacher
 
 settings = get_settings()
 
@@ -28,7 +28,8 @@ app = FastAPI(
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
-    openapi_url="/openapi.json"
+    openapi_url="/openapi.json",
+    lifespan=lifespan  # Enable database initialization on startup
 )
 
 # CORS configuration
@@ -45,6 +46,7 @@ app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(tutor.router, prefix="/api/tutor", tags=["Tutor"])
 app.include_router(exercises.router, prefix="/api/exercises", tags=["Exercises"])
 app.include_router(progress.router, prefix="/api/progress", tags=["Progress"])
+app.include_router(teacher.router, prefix="/api/teacher", tags=["Teacher"])
 app.include_router(admin.router, prefix="/api/admin", tags=["Admin"])
 
 
@@ -52,7 +54,7 @@ app.include_router(admin.router, prefix="/api/admin", tags=["Admin"])
 async def root():
     """Root endpoint."""
     return {
-        "message": "Welcome to NeuroCode API",
+        "message": "Welcome to PyPal API",
         "docs": "/docs",
     }
 

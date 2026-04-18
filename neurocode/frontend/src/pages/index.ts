@@ -3,3 +3,7 @@ export { RegisterPage } from './RegisterPage';
 export { DashboardPage } from './DashboardPage';
 export { ExercisePage } from './ExercisePage';
 export { SettingsPage } from './SettingsPage';
+export { ConsentPendingPage } from './ConsentPendingPage';
+export { TeacherDashboardPage } from './TeacherDashboardPage';
+export { TeacherStudentDetailPage } from './TeacherStudentDetailPage';
+export { TeacherExercisesPage } from './TeacherExercisesPage';

@@ -17,8 +17,8 @@ EXERCISES = [
         "solution_code": 'print("Hello, World!")',
         "test_cases": json.dumps([{"input": "", "expected_output": "Hello, World!"}]),
         "steps": json.dumps([
-            {"number": 1, "title": "Type the magic word", "instruction": "Type: print", "checkpoint": False},
-            {"number": 2, "title": "Add your message", "instruction": 'Add parentheses and quotes: print("Hello, World!")', "checkpoint": True}
+            {"number": 1, "title": "Type the magic word", "instruction": "Type the word 'print' - this tells Python to display something!", "code_hint": "print", "checkpoint": False},
+            {"number": 2, "title": "Add your message", "instruction": "Add parentheses and quotes around your message", "code_hint": 'print("Hello, World!")', "checkpoint": True}
         ])
     },
     {
@@ -28,15 +28,16 @@ EXERCISES = [
         "concept": "variables",
         "grade_level": 6,
         "estimated_minutes": 10,
-        "step_count": 3,
+        "step_count": 4,
         "interest_tags": json.dumps(["games", "math"]),
         "starter_code": "# Let's do some math!\n# Goal: Calculate your score in a game\n\n",
         "solution_code": 'level1_score = 50\nlevel2_score = 75\ntotal = level1_score + level2_score\nprint("Total score:", total)',
         "test_cases": json.dumps([{"input": "", "expected_output": "Total score: 125"}]),
         "steps": json.dumps([
-            {"number": 1, "title": "Store your first score", "instruction": "Type: level1_score = 50", "checkpoint": False},
-            {"number": 2, "title": "Store your second score", "instruction": "Type: level2_score = 75", "checkpoint": False},
-            {"number": 3, "title": "Add them up", "instruction": 'Type: total = level1_score + level2_score', "checkpoint": True}
+            {"number": 1, "title": "Store your first score", "instruction": "Create a variable to store your level 1 score", "code_hint": "level1_score = 50", "checkpoint": False},
+            {"number": 2, "title": "Store your second score", "instruction": "Create another variable for level 2", "code_hint": "level2_score = 75", "checkpoint": True},
+            {"number": 3, "title": "Add them up", "instruction": "Add both scores together", "code_hint": "total = level1_score + level2_score", "checkpoint": False},
+            {"number": 4, "title": "Print the total", "instruction": "Display your total score!", "code_hint": 'print("Total score:", total)', "checkpoint": True}
         ])
     },
     {
@@ -46,15 +47,16 @@ EXERCISES = [
         "concept": "strings",
         "grade_level": 6,
         "estimated_minutes": 10,
-        "step_count": 3,
+        "step_count": 4,
         "interest_tags": json.dumps(["art", "social"]),
         "starter_code": "# Create your profile card!\n\n",
         "solution_code": 'name = "Alex"\nage = 12\nprint("=== PROFILE ===")\nprint("Name:", name)\nprint("Age:", age)',
         "test_cases": json.dumps([{"input": "", "expected_output": "=== PROFILE ===\nName: Alex\nAge: 12"}]),
         "steps": json.dumps([
-            {"number": 1, "title": "Pick your name", "instruction": 'Type: name = "Alex"', "checkpoint": False},
-            {"number": 2, "title": "Add your age", "instruction": "Type: age = 12", "checkpoint": False},
-            {"number": 3, "title": "Print your profile", "instruction": "Print a header and your info", "checkpoint": True}
+            {"number": 1, "title": "Pick your name", "instruction": "Store your name in a variable", "code_hint": 'name = "Alex"', "checkpoint": False},
+            {"number": 2, "title": "Add your age", "instruction": "Store your age (a number, no quotes!)", "code_hint": "age = 12", "checkpoint": True},
+            {"number": 3, "title": "Print a header", "instruction": "Print a cool header for your profile", "code_hint": 'print("=== PROFILE ===")', "checkpoint": False},
+            {"number": 4, "title": "Print your info", "instruction": "Print your name and age", "code_hint": 'print("Name:", name)\nprint("Age:", age)', "checkpoint": True}
         ])
     },
     {
@@ -70,10 +72,10 @@ EXERCISES = [
         "solution_code": 'high_score = 100\nyour_score = 120\nif your_score > high_score:\n    print("NEW HIGH SCORE!")\nelse:\n    print("Try again!")',
         "test_cases": json.dumps([{"input": "", "expected_output": "NEW HIGH SCORE!"}]),
         "steps": json.dumps([
-            {"number": 1, "title": "Look at the scores", "instruction": "See the scores? We will compare them!", "checkpoint": False},
-            {"number": 2, "title": "Write the if statement", "instruction": "Type: if your_score > high_score:", "checkpoint": False},
-            {"number": 3, "title": "What happens if you win", "instruction": 'Press Tab, then: print("NEW HIGH SCORE!")', "checkpoint": True},
-            {"number": 4, "title": "What if you dont beat it", "instruction": 'Add: else: print("Try again!")', "checkpoint": True}
+            {"number": 1, "title": "Look at the scores", "instruction": "See the variables above? We'll compare them with an if statement!", "checkpoint": False},
+            {"number": 2, "title": "Write the if statement", "instruction": "Check if your score is greater than the high score", "code_hint": "if your_score > high_score:", "checkpoint": True},
+            {"number": 3, "title": "What happens if you win", "instruction": "Press Tab to indent, then print a victory message!", "code_hint": '    print("NEW HIGH SCORE!")', "checkpoint": False},
+            {"number": 4, "title": "Handle the else case", "instruction": "Add an else clause for when you don't beat it", "code_hint": 'else:\n    print("Try again!")', "checkpoint": True}
         ])
     },
     {
@@ -127,10 +129,10 @@ EXERCISES = [
         "solution_code": 'songs = ["Song 1", "Song 2", "Song 3"]\nprint("My Playlist:")\nfor song in songs:\n    print("  -", song)',
         "test_cases": json.dumps([{"input": "", "expected_output": "My Playlist:\n  - Song 1\n  - Song 2\n  - Song 3"}]),
         "steps": json.dumps([
-            {"number": 1, "title": "Create your playlist", "instruction": 'Type: songs = ["Song 1", "Song 2"]', "checkpoint": False},
-            {"number": 2, "title": "Print a header", "instruction": 'Type: print("My Playlist:")', "checkpoint": False},
-            {"number": 3, "title": "Loop through songs", "instruction": "Type: for song in songs:", "checkpoint": False},
-            {"number": 4, "title": "Print each song", "instruction": 'Type: print("  -", song)', "checkpoint": True}
+            {"number": 1, "title": "Create your playlist", "instruction": "Create a list with your favorite songs (use quotes for each!)", "code_hint": 'songs = ["Song 1", "Song 2", "Song 3"]', "checkpoint": True},
+            {"number": 2, "title": "Print a header", "instruction": "Print a title for your playlist", "code_hint": 'print("My Playlist:")', "checkpoint": False},
+            {"number": 3, "title": "Loop through songs", "instruction": "Use a for loop to go through each song", "code_hint": "for song in songs:", "checkpoint": True},
+            {"number": 4, "title": "Print each song", "instruction": "Inside the loop, print each song with a dash", "code_hint": '    print("  -", song)', "checkpoint": True}
         ])
     },
     {
@@ -146,10 +148,10 @@ EXERCISES = [
         "solution_code": 'prices = [5, 10, 3, 8]\ntotal = sum(prices)\nprint("Items:", len(prices))\nprint("Total: $" + str(total))',
         "test_cases": json.dumps([{"input": "", "expected_output": "Items: 4\nTotal: $26"}]),
         "steps": json.dumps([
-            {"number": 1, "title": "Look at the prices", "instruction": "We have a list of prices!", "checkpoint": False},
-            {"number": 2, "title": "Calculate the total", "instruction": "Type: total = sum(prices)", "checkpoint": True},
-            {"number": 3, "title": "Count the items", "instruction": 'Type: print("Items:", len(prices))', "checkpoint": False},
-            {"number": 4, "title": "Show the total", "instruction": 'Type: print("Total: $" + str(total))', "checkpoint": True}
+            {"number": 1, "title": "Look at the prices", "instruction": "See the prices list above? We'll use Python functions to work with it!", "checkpoint": False},
+            {"number": 2, "title": "Calculate the total", "instruction": "Use sum() to add up all prices", "code_hint": "total = sum(prices)", "checkpoint": True},
+            {"number": 3, "title": "Count the items", "instruction": "Use len() to count how many items", "code_hint": 'print("Items:", len(prices))', "checkpoint": True},
+            {"number": 4, "title": "Show the total", "instruction": "Print the total (convert to string to combine with $)", "code_hint": 'print("Total: $" + str(total))', "checkpoint": True}
         ])
     },
     {
@@ -292,6 +294,156 @@ EXERCISES = [
             {"number": 3, "title": "Format the entry", "instruction": 'journal_entry = f"--- {date} ---\\n{entry}"', "checkpoint": True},
             {"number": 4, "title": "Display it", "instruction": 'print("Saved entry:"); print(journal_entry)', "checkpoint": False},
             {"number": 5, "title": "Try it out", "instruction": "Run and write a short entry!", "checkpoint": True}
+        ])
+    },
+    # Additional Grade 6 exercises
+    {
+        "title": "My Emoji Art",
+        "description": "Use print statements to create emoji art! (Creative - no tests)",
+        "difficulty": 1,
+        "concept": "print",
+        "grade_level": 6,
+        "estimated_minutes": 5,
+        "step_count": 3,
+        "interest_tags": json.dumps(["art", "creative", "emoji"]),
+        "starter_code": "# Emoji Art!\n# Create a picture using text and symbols\n# Examples: * - | / \\ ^ _ o O\n\n",
+        "solution_code": 'print("  * * *  ")\nprint(" *     * ")\nprint("*  ^_^  *")\nprint(" *     * ")\nprint("  * * *  ")',
+        "test_cases": None,
+        "steps": json.dumps([
+            {"number": 1, "title": "Make the top", "instruction": "Start with a print line for the top of your art", "code_hint": 'print("  * * *  ")', "checkpoint": True},
+            {"number": 2, "title": "Add more lines", "instruction": "Add 2-3 more print() lines to make a shape!", "code_hint": 'print(" *     * ")\nprint("*  ^_^  *")', "checkpoint": True},
+            {"number": 3, "title": "Finish your art!", "instruction": "Complete your picture - be creative! Click Run Code to see it.", "checkpoint": True}
+        ])
+    },
+    {
+        "title": "Secret Code Maker",
+        "description": "Learn to use variables to store secret messages!",
+        "difficulty": 1,
+        "concept": "variables",
+        "grade_level": 6,
+        "estimated_minutes": 8,
+        "step_count": 3,
+        "interest_tags": json.dumps(["spy", "secrets", "games"]),
+        "starter_code": "# Secret Code Maker\n# Store your secret message in a variable!\n\n",
+        "solution_code": 'secret = "MEET AT LUNCH"\nprint("The secret message is:")\nprint(secret)',
+        "test_cases": json.dumps([{"input": "", "expected_output": "The secret message is:\nMEET AT LUNCH"}]),
+        "steps": json.dumps([
+            {"number": 1, "title": "Create your secret", "instruction": 'Type: secret = "YOUR MESSAGE"', "checkpoint": False},
+            {"number": 2, "title": "Print a label", "instruction": 'Type: print("The secret message is:")', "checkpoint": False},
+            {"number": 3, "title": "Reveal the secret", "instruction": "Type: print(secret)", "checkpoint": True}
+        ])
+    },
+    # Additional Grade 7 exercises
+    {
+        "title": "Pet Age Calculator",
+        "description": "Calculate your pet's age in human years!",
+        "difficulty": 2,
+        "concept": "math",
+        "grade_level": 7,
+        "estimated_minutes": 10,
+        "step_count": 4,
+        "interest_tags": json.dumps(["pets", "animals", "math"]),
+        "starter_code": "# Pet Age Calculator\n# Dogs age differently than humans!\n\n",
+        "solution_code": 'dog_years = int(input("How old is your dog? "))\nhuman_years = dog_years * 7\nprint("Your dog is", human_years, "in human years!")',
+        "steps": json.dumps([
+            {"number": 1, "title": "Ask for the age", "instruction": 'dog_years = int(input("How old is your dog? "))', "checkpoint": True},
+            {"number": 2, "title": "Calculate human years", "instruction": "Multiply by 7: human_years = dog_years * 7", "checkpoint": False},
+            {"number": 3, "title": "Show the result", "instruction": 'print("Your dog is", human_years, "in human years!")', "checkpoint": True},
+            {"number": 4, "title": "Try different ages", "instruction": "Run it again with different ages!", "checkpoint": True}
+        ])
+    },
+    {
+        "title": "Coin Flip Game",
+        "description": "Make the computer flip a coin!",
+        "difficulty": 2,
+        "concept": "random",
+        "grade_level": 7,
+        "estimated_minutes": 10,
+        "step_count": 4,
+        "interest_tags": json.dumps(["games", "luck", "random"]),
+        "starter_code": "# Coin Flip Game\nimport random\n\n",
+        "solution_code": 'import random\nresult = random.choice(["Heads", "Tails"])\nprint("Flipping coin...")\nprint("Result:", result)',
+        "steps": json.dumps([
+            {"number": 1, "title": "Create the choices", "instruction": 'Use random.choice() with ["Heads", "Tails"]', "checkpoint": False},
+            {"number": 2, "title": "Store the result", "instruction": 'result = random.choice(["Heads", "Tails"])', "checkpoint": True},
+            {"number": 3, "title": "Add suspense", "instruction": 'print("Flipping coin...")', "checkpoint": False},
+            {"number": 4, "title": "Show the result", "instruction": 'print("Result:", result)', "checkpoint": True}
+        ])
+    },
+    {
+        "title": "Emoji Mood Checker",
+        "description": "Create a program that shows emoji based on your mood!",
+        "difficulty": 2,
+        "concept": "conditionals",
+        "grade_level": 7,
+        "estimated_minutes": 12,
+        "step_count": 4,
+        "interest_tags": json.dumps(["emoji", "feelings", "social"]),
+        "starter_code": "# Emoji Mood Checker\n# Type how you feel and get an emoji!\n\n",
+        "solution_code": 'mood = input("How are you feeling? ").lower()\nif "happy" in mood:\n    print("Great! 😊")\nelif "sad" in mood:\n    print("Sending hugs! 🤗")\nelse:\n    print("Stay awesome! ⭐")',
+        "steps": json.dumps([
+            {"number": 1, "title": "Get the mood", "instruction": 'mood = input("How are you feeling? ").lower()', "checkpoint": True},
+            {"number": 2, "title": "Check for happy", "instruction": 'if "happy" in mood: print("Great! 😊")', "checkpoint": False},
+            {"number": 3, "title": "Check for sad", "instruction": 'elif "sad" in mood: print("Sending hugs! 🤗")', "checkpoint": True},
+            {"number": 4, "title": "Handle other moods", "instruction": 'else: print("Stay awesome! ⭐")', "checkpoint": True}
+        ])
+    },
+    # Additional Grade 8 exercises
+    {
+        "title": "Word Counter",
+        "description": "Count how many words are in a sentence!",
+        "difficulty": 3,
+        "concept": "strings",
+        "grade_level": 8,
+        "estimated_minutes": 12,
+        "step_count": 4,
+        "interest_tags": json.dumps(["writing", "school", "text"]),
+        "starter_code": "# Word Counter\n# Count words in any sentence!\n\n",
+        "solution_code": 'sentence = input("Enter a sentence: ")\nwords = sentence.split()\ncount = len(words)\nprint("Word count:", count)',
+        "test_cases": json.dumps([{"input": "Hello world", "expected_output": "Enter a sentence: Word count: 2"}]),
+        "steps": json.dumps([
+            {"number": 1, "title": "Get the sentence", "instruction": 'sentence = input("Enter a sentence: ")', "checkpoint": True},
+            {"number": 2, "title": "Split into words", "instruction": "words = sentence.split()", "checkpoint": False},
+            {"number": 3, "title": "Count the words", "instruction": "count = len(words)", "checkpoint": True},
+            {"number": 4, "title": "Show the count", "instruction": 'print("Word count:", count)', "checkpoint": True}
+        ])
+    },
+    {
+        "title": "Rock Paper Scissors",
+        "description": "Play rock paper scissors against the computer!",
+        "difficulty": 4,
+        "concept": "game-logic",
+        "grade_level": 8,
+        "estimated_minutes": 20,
+        "step_count": 5,
+        "interest_tags": json.dumps(["games", "classic", "competitive"]),
+        "starter_code": "# Rock Paper Scissors\nimport random\n\nchoices = ['rock', 'paper', 'scissors']\n\n",
+        "solution_code": 'import random\nchoices = ["rock", "paper", "scissors"]\nplayer = input("Choose rock, paper, or scissors: ").lower()\ncomputer = random.choice(choices)\nprint("Computer chose:", computer)\nif player == computer:\n    print("Tie!")\nelif (player == "rock" and computer == "scissors") or (player == "paper" and computer == "rock") or (player == "scissors" and computer == "paper"):\n    print("You win!")\nelse:\n    print("Computer wins!")',
+        "steps": json.dumps([
+            {"number": 1, "title": "Get player choice", "instruction": 'player = input("Choose rock, paper, or scissors: ").lower()', "checkpoint": True},
+            {"number": 2, "title": "Computer picks", "instruction": "computer = random.choice(choices)", "checkpoint": False},
+            {"number": 3, "title": "Show computer choice", "instruction": 'print("Computer chose:", computer)', "checkpoint": True},
+            {"number": 4, "title": "Check for tie", "instruction": 'if player == computer: print("Tie!")', "checkpoint": False},
+            {"number": 5, "title": "Check who wins", "instruction": "Use elif to check win conditions", "checkpoint": True}
+        ])
+    },
+    {
+        "title": "Simple To-Do List",
+        "description": "Create a basic to-do list manager!",
+        "difficulty": 3,
+        "concept": "lists",
+        "grade_level": 8,
+        "estimated_minutes": 15,
+        "step_count": 5,
+        "interest_tags": json.dumps(["productivity", "school", "organization"]),
+        "starter_code": "# To-Do List\ntasks = []\n\n",
+        "solution_code": 'tasks = []\nfor i in range(3):\n    task = input("Add a task: ")\n    tasks.append(task)\nprint("\\nYour To-Do List:")\nfor i, task in enumerate(tasks, 1):\n    print(f"{i}. {task}")',
+        "steps": json.dumps([
+            {"number": 1, "title": "Create empty list", "instruction": "tasks = [] is already done!", "checkpoint": False},
+            {"number": 2, "title": "Add a task loop", "instruction": "for i in range(3): task = input('Add a task: ')", "checkpoint": True},
+            {"number": 3, "title": "Append to list", "instruction": "tasks.append(task)", "checkpoint": False},
+            {"number": 4, "title": "Print header", "instruction": 'print("\\nYour To-Do List:")', "checkpoint": True},
+            {"number": 5, "title": "Show all tasks", "instruction": "for i, task in enumerate(tasks, 1): print(f'{i}. {task}')", "checkpoint": True}
         ])
     },
 ]

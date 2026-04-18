@@ -80,8 +80,8 @@ async def test_middle_school_safety_bounds(client: AsyncClient):
         "grade_level": 1
     }
     response = await client.post("/api/auth/register", json=too_young)
-    assert response.status_code == 422 # OR 400 depending on where validation hits. Schema validation hits first.
-    # assert "ages 6-18" in response.json()["detail"]
+    # Either schema (422) or handler (400) rejects under-6 registrations.
+    assert response.status_code in (400, 422)
 
     # Test Username validation (no offensive patterns check here, but basic format)
     bad_name = {

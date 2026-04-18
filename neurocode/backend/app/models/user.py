@@ -21,24 +21,37 @@ class ADHDProfile(enum.Enum):
     NOT_SPECIFIED = "not_specified"
 
 
+class UserRole(enum.Enum):
+    """Platform user roles."""
+    STUDENT = "student"
+    TEACHER = "teacher"
+
+
 class User(Base):
     """
-    Student user model.
-    
+    Platform user (student or teacher).
+
     COPPA Note: For users under 13, we collect minimal PII and require
     parental consent before any data collection.
     """
     __tablename__ = "users"
-    
+
     id: Mapped[int] = mapped_column(primary_key=True)
-    
+
     # Authentication (minimal PII)
     username: Mapped[str] = mapped_column(String(50), unique=True, index=True)
     hashed_password: Mapped[str] = mapped_column(String(255))
-    
-    # Age verification (COPPA)
+
+    # Role: "student" or "teacher"
+    role: Mapped[str] = mapped_column(String(20), default="student", index=True)
+
+    # Teacher-specific (optional)
+    display_name: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    school: Mapped[Optional[str]] = mapped_column(String(200), nullable=True)
+
+    # Age verification (COPPA) - students only; teachers store defaults
     birth_year: Mapped[int] = mapped_column(Integer)
-    grade_level: Mapped[int] = mapped_column(Integer)  # 6, 7, or 8
+    grade_level: Mapped[int] = mapped_column(Integer)  # 6, 7, or 8 for students
     
     # Consent tracking
     has_parental_consent: Mapped[bool] = mapped_column(Boolean, default=False)

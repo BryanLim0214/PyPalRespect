@@ -20,7 +20,10 @@ interface AuthState {
         gradeLevel: number;
         parentEmail?: string;
         interests?: string[];
-    }) => Promise<{ success: boolean; needsConsent: boolean }>;
+        role?: 'student' | 'teacher';
+        displayName?: string;
+        school?: string;
+    }) => Promise<{ success: boolean; needsConsent: boolean; role?: 'student' | 'teacher' }>;
     logout: () => void;
     fetchUser: () => Promise<void>;
     updatePreferences: (data: Partial<User>) => Promise<boolean>;
@@ -51,7 +54,7 @@ export const useAuthStore = create<AuthState>()(
                 }
             },
 
-            register: async ({ username, password, birthYear, gradeLevel, parentEmail, interests }) => {
+            register: async ({ username, password, birthYear, gradeLevel, parentEmail, interests, role, displayName, school }) => {
                 set({ isLoading: true, error: null });
                 try {
                     const result = await authApi.register({
@@ -61,20 +64,24 @@ export const useAuthStore = create<AuthState>()(
                         grade_level: gradeLevel,
                         parent_email: parentEmail,
                         interests: interests,
+                        role: role,
+                        display_name: displayName,
+                        school: school,
                     });
 
                     if (result.status === 'consent_required') {
                         set({ isLoading: false });
-                        return { success: true, needsConsent: true };
+                        return { success: true, needsConsent: true, role };
                     }
 
                     if (result.access_token) {
                         localStorage.setItem('access_token', result.access_token);
                         const user = await authApi.getMe();
                         set({ user, isAuthenticated: true, isLoading: false });
+                        return { success: true, needsConsent: false, role: user.role };
                     }
 
-                    return { success: true, needsConsent: false };
+                    return { success: true, needsConsent: false, role };
                 } catch (err) {
                     const message = err instanceof ApiError ? err.message : 'Registration failed';
                     set({ error: message, isLoading: false });
@@ -84,7 +91,7 @@ export const useAuthStore = create<AuthState>()(
 
             logout: () => {
                 localStorage.removeItem('access_token');
-                set({ user: null, isAuthenticated: false, error: null });
+                set({ user: null, isAuthenticated: false, error: null, isLoading: false });
             },
 
             fetchUser: async () => {

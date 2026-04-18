@@ -41,20 +41,30 @@ async def get_current_user(
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
-    
+
     payload = decode_access_token(token)
     if payload is None:
         raise credentials_exception
-    
+
     user_id = payload.get("user_id")
     if user_id is None:
         raise credentials_exception
-    
+
     user = await db.get(User, user_id)
     if user is None:
         raise credentials_exception
-    
+
     return user
+
+
+async def require_teacher(current_user: User = Depends(get_current_user)) -> User:
+    """Only allow users with the teacher role."""
+    if current_user.role != "teacher":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Teacher access required",
+        )
+    return current_user
 
 
 @router.post("/register")
@@ -63,8 +73,9 @@ async def register_student(
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Register a new student.
-    If under 13, triggers parental consent flow (COPPA compliance).
+    Register a new student or teacher.
+    Students under 13 trigger the parental consent flow (COPPA compliance).
+    Teachers skip age/grade validation and are activated immediately.
     """
     # Check if username exists
     result = await db.execute(
@@ -72,31 +83,66 @@ async def register_student(
     )
     if result.scalar_one_or_none():
         raise HTTPException(
-            status_code=400, 
+            status_code=400,
             detail="Username already taken"
         )
-    
-    # Calculate age
+
+    import json
+
+    # Teacher registration path
+    if request.role == "teacher":
+        teacher = User(
+            username=request.username.lower(),
+            hashed_password=hash_password(request.password),
+            role="teacher",
+            display_name=request.display_name or request.username,
+            school=request.school,
+            birth_year=request.birth_year or 1990,
+            grade_level=0,
+            has_parental_consent=True,
+            consent_date=datetime.now(timezone.utc),
+        )
+        db.add(teacher)
+        await db.commit()
+        await db.refresh(teacher)
+
+        access_token = create_access_token(
+            data={"user_id": teacher.id, "username": teacher.username, "role": "teacher"}
+        )
+        return {
+            "status": "registered",
+            "access_token": access_token,
+            "token_type": "bearer",
+            "user": UserResponse.model_validate(teacher),
+        }
+
+    # Calculate age and validate against configured bounds (student path)
     current_year = date.today().year
     age = current_year - request.birth_year
-    
-    if age < 6 or age > 18:
+
+    if age < settings.MIN_AGE_ALLOWED or age > settings.MAX_AGE_ALLOWED:
         raise HTTPException(
             status_code=400,
-            detail="This platform is for students ages 6-18"
+            detail=f"This platform is for students ages {settings.MIN_AGE_ALLOWED}-{settings.MAX_AGE_ALLOWED}"
         )
-    
+
+    if request.grade_level < 6 or request.grade_level > 8:
+        raise HTTPException(
+            status_code=400,
+            detail="Grade level must be 6, 7, or 8",
+        )
+
     # Create user
-    import json
     user = User(
         username=request.username.lower(),
         hashed_password=hash_password(request.password),
+        role="student",
         birth_year=request.birth_year,
         grade_level=request.grade_level,
         has_parental_consent=False,
         interests=json.dumps(request.interests) if request.interests else None,
     )
-    
+
     if age < settings.MIN_AGE_WITHOUT_CONSENT:
         # COPPA: Require parental consent
         if not request.parent_email:
@@ -131,9 +177,9 @@ async def register_student(
         
         # Create access token
         access_token = create_access_token(
-            data={"user_id": user.id, "username": user.username}
+            data={"user_id": user.id, "username": user.username, "role": user.role}
         )
-        
+
         return {
             "status": "registered",
             "access_token": access_token,
@@ -226,9 +272,9 @@ async def login(
     await db.commit()
     
     access_token = create_access_token(
-        data={"user_id": user.id, "username": user.username}
+        data={"user_id": user.id, "username": user.username, "role": user.role}
     )
-    
+
     return Token(access_token=access_token)
 
 
